@@ -12,6 +12,8 @@ class ProductsRoutes {
     }
     config() {
         this.router.get('/', productsControllers_1.default.index);
+        this.router.post('/', productsControllers_1.default.createProducts);
+        this.router.delete('/', productsControllers_1.default.deleteProducts);
     }
 }
 const productsRoutes = new ProductsRoutes();

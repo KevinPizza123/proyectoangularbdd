@@ -12,6 +12,12 @@ class ProductsControllers {
         database_1.default.query('DESCRIBE products');
         response.json('products');
     }
+    createProducts(request, response) {
+        response.json({ text: "Producto creado" });
+    }
+    deleteProducts(request, response) {
+        response.json({ text: "Producto eliminado" });
+    }
 }
 exports.productsControllers = new ProductsControllers();
 exports.default = exports.productsControllers;
