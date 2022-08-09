@@ -6,18 +6,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.productsControllers = void 0;
 const database_1 = __importDefault(require("../database/database"));
 class ProductsControllers {
-    index(request, response) {
+    async list(request, response) {
         //response.send("hola clase de Programacion visual desde productsRoutes")
         //response.json({text: 'api desde productsController api/products'});
-        database_1.default.query('DESCRIBE products');
-        response.json('products');
+        const products = await database_1.default.query('SELECT * FROM  products');
+        //pool.query('DESCRIBE products');
+        response.json(products);
     }
-    createProducts(request, response) {
-        response.json({ text: "Producto creado" });
+    async create(request, response) {
+        await database_1.default.query("INSERT INTO products set ?", [request.body]);
+        //console.log(request,body);
+        response.json({ message: "Producto se ha creado exitosamente" });
     }
-    deleteProducts(request, response) {
-        response.json({ text: "Producto eliminado" });
+    delete(request, response) {
+        response.json({ text: "Producto eliminado" + request.params.id });
     }
 }
 exports.productsControllers = new ProductsControllers();
 exports.default = exports.productsControllers;
+function body(request, body) {
+    throw new Error("Function not implemented.");
+}

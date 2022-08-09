@@ -8,9 +8,9 @@ class ProductsRoutes{
 
     }
     config():void{// Configuracion de la rutas
-    this.router.get('/',productsControllers.index);
-    this.router.post('/',productsControllers.createProducts);
-    this.router.delete('/',productsControllers.deleteProducts);
+    this.router.get('/',productsControllers.list);
+    this.router.post('/',productsControllers.create);
+    this.router.delete('/id',productsControllers.delete);
     
     }
 
